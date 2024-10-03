@@ -7,3 +7,24 @@ git branch -M main
 git remote add origin git@github.com:name/PracticePerl.git
 git push -u origin main
 
+参考：https://helog.jp/git/vsc-windows-github-ssh/
+SSH接続の準備
+Windows版のVSCでは、Windows標準のOpenSSHを使用して接続しているようです。
+そこでまずは、PowerShellを起動して、以下のコマンドでSSH鍵を生成します。
+※cmd コマンドプロンプトでやった。
+ここで、passphraseは入力しません。
+生成した公開鍵は、GitHubにログインし、設定画面から登録します。
+秘密鍵は、任意のフォルダに保存します。
+参考：https://qiita.com/kanamekun/items/bfe12a1f018ed431a4cb
+id_rsa … こちらが秘密鍵で、Windows PC内に保存しておくキーファイルです。
+id_rsa.pub … こちらが公開鍵でGitHubサイトに登録するキーファイルです。
+
+Githubに公開鍵を登録する
+SSH and GPG keysのところから
+New SSH Keyにて
+以下の情報を入力して、「Add SSH Key」をクリックします。
+Title：鍵のファイル名を入れる。今回だとid_rsa.pubとする。
+Key:ここはid_rsa.pubをWindowsに入れているテキストエディタで開き
+その値をコピー ＆ ペーストする。
+ssh~含め全部。そしてcrate key
+
