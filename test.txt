@@ -32,3 +32,68 @@ ssh~含め全部。そしてcrate key
 そのため、addressは登録済み、キーなしとなっていた。
 今回のキーは期限設定していないが…？
 
+perlインストールできていない？
+★再起動　忘れていた。
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LC_ALL = (unset),
+        (possibly more locale environment variables)
+        LANG = "ja_JP.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the system default locale ("Japanese_Japan.932").
+Locale 'Japanese_Japan.932' is unsupported, and may crash the interpreter.
+
+ユーザー環境変数の変更: 環境変数を設定する場合、全体の設定には影響しません。
+VSCodeやPerlなど、特定のアプリケーションにのみ影響を与えます。
+具体的な推奨設定
+LANGをCに設定
+
+perl -v
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LC_ALL = (unset),
+        (possibly more locale environment variables)
+        LANG = "ja_JP.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the system default locale ("Japanese_Japan.932").
+Locale 'Japanese_Japan.932' is unsupported, and may crash the interpreter.
+
+This is perl 5, version 38, subversion 2 (v5.38.2) built for MSWin32-x64-multi-thread
+
+Copyright 1987-2023, Larry Wall
+
+Binary build 38.2r4 provided by ActiveState http://www.ActiveState.com
+Built Wed Mar 27 06:25:33 2024
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using "man perl" or "perldoc perl".  If you have access to the
+Internet, point your browser at https://www.perl.org/, the Perl Home Page.
+
+perl: 警告: ロケールの設定に失敗しました。
+perl: 警告: ロケール設定を確認してください:
+        LC_ALL = (未設定)、
+        (おそらくさらに多くのロケール環境変数)
+        LANG = "ja_JP.UTF-8"
+    がサポートされており、システムにインストールされています。
+perl: 警告: システムのデフォルトのロケール (「Japanese_Japan.932」) にフォールバックします。
+ロケール「Japanese_Japan.932」はサポートされていないため、インタープリタがクラッシュする可能性があります。
+
+これは、MSWin32-x64-multi-thread 用に構築された Perl 5、バージョン 38、Subversion 2 (v5.38.2) です。     
+
+著作権 1987-2023、ラリー ウォール
+
+ActiveState http://www.ActiveState.com によって提供されるバイナリ ビルド 38.2r4
+2024 年 3 月 27 日水曜日 06:25:33 に構築
+
+Perl は、芸術的ライセンスまたは
+GNU General Public License。Perl 5 ソース キットに含まれている場合があります。
+
+FAQ リストを含む Perl の完全なドキュメントは、次の場所にあります。
+このシステムは「man perl」または「perldoc perl」を使用します。  にアクセスできる場合は、
+インターネットでは、ブラウザで https://www.perl.org/ (Perl ホームページ) にアクセスします。
+
+全て完了しているのに……。

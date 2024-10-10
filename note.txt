@@ -1,0 +1,73 @@
+WSLの導入について！
+やったこと
+１．WSL、Windows Subsystem for Linuxのインストール
+２．Ubuntuのインストール
+参考：https://www.value-domain.com/media/wsl2-linux/
+Windowsで「windowsの機能の有効化または無効化」
+Linux用windowsサブシステムにチェック→再起動
+micrsoftstoreになかったので
+https://aka.ms/wslstorepageのリンクからWSLのインストール。
+Ubuntuは検索で出てきたのでインストール。
+※さきにUbuntuインストールしてもエラーで落ちた。WSLのインストールが必須？
+Enter new UNIX usernameとかかれている。
+なんでもいいのか？ＰＷもいるとか。
+ＰＷは打っても見えない。が、再度打て、で同じくうててたらsuccessでる。
+
+次にsudo apt update
+PW求められて、なにかしらたくさんＤｏｎｅ。
+もう一度sudo apt update？ちがう
+sudo apt upgrade
+yesのyで完了する。
+
+日本語化はしなかった。
+
+Apacheもインストールするのか…。土台作りがんばるぞ。
+
+sudo apt update
+これはなんのため？
+sudo apt install apache2
+yesのy
+
+sudo service apache2 status
+たくさんでてきます。http://localhost/へアクセスして確認する
+It Works！とでてきてOK
+
+ドキュメントルート？
+つくった空間にディレクトリをつくる。ホームディレクトリ内に作成。
+mkdir public_html
+chmod 707 public_html
+
+sudo a2enmod userdir
+ここで、できない再起動してと言われたので、
+sudo service apache2 restartを行った。
+再度sudo a2enmod userdirをしたら、もうやってるといわれた。
+ので次これやる
+chmod 751 /home/"username"
+
+少し探したけども！
+PCと同じ高さにLinuxというフォルダ？ディレクトリ？ができていて、
+その中にUbuntuがあり
+そのなかに作った？homeがあり、中に"username"があり、
+その中に作った？public_htmlがあり、
+そこに、テキストファイル新規作成で拡張子換えて
+index.htmlを作成した！
+
+エディタを入れてないPCだったのでVSCodeをUSBに入れるという記事をみて用意。
+index.htmlをちょこっと書き加えたいが。
+とりあえずメモ帳でハロ―。
+動作確認はhttp://localhost/~"username"/にアクセスする。と。反映された。
+
+これでエディタから直接ドキュメントルートは以下のファイルを編集できる
+＋即座にブラウザから結果を確認できる。
+
+とのこと。。。
+PHPインストールはいったんとしとこう。
+
+Apacheを停止しておいてあげたい。セキュリティのため。
+このPC…はいったんおいておいて。
+sudo service apache2 stop
+さっき見れたページが無事見れなくなっている。
+ＯＫ
+今度またubuntu起動したら、sudo service apache2 start する。
+
+面倒？自動化もある。。。
