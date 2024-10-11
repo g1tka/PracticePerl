@@ -71,3 +71,4 @@ sudo service apache2 stop
 今度またubuntu起動したら、sudo service apache2 start する。
 
 面倒？自動化もある。。。
+

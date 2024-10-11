@@ -97,3 +97,14 @@ FAQ リストを含む Perl の完全なドキュメントは、次の場所に�
 インターネットでは、ブラウザで https://www.perl.org/ (Perl ホームページ) にアクセスします。
 
 全て完了しているのに……。
+strawberry perl インストールしてみるため、削除してくる。
+
+https://strawberryperl.com/
+
+--------
+USBに入れる方式で、StrawberryPerlとMYSYS2とVSCodeをいれた。
+フォルダ名ミス、バッチファイルと同列のフォルダ名変更。
+バッチファイルに書いてあるとおりに64とした。
+
+Perlversion確認できた。
+実行には？というところ次回。
