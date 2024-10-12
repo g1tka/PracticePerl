@@ -72,3 +72,24 @@ sudo service apache2 stop
 
 面倒？自動化もある。。。
 
+いぜんの問題で、perlが実行できない問題
+wslが無いみたいな問題
+→参考：https://qiita.com/asdf22/items/b12eacd5a7507b9646da
+
+Ubuntuではなく、Pwershellの方で実行
+PowerShell
+wsl --set-default-version 2
+これが必要だった。
+インストールしたディストリビューションを確認。
+VERSION 2と表示されていればWSL2でUbuntuが実行されている。
+PowerShell
+wsl -l -v
+  NAME                   STATE           VERSION
+* Ubuntu                 Running         2
+
+いろいろかかったけど、とりあえずこれで
+１．VSCodeからLinux（WSL、Ubuntu）内のファイル（home/username）
+の中のファイルhello.plを操作、記述、できた。
+２．Ubuntuでperl hello.plで実行できた！！！
+
+ようやく！本の順に勉強を進められる。

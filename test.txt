@@ -107,4 +107,3 @@ USBに入れる方式で、StrawberryPerlとMYSYS2とVSCodeをいれた。
 バッチファイルに書いてあるとおりに64とした。
 
 Perlversion確認できた。
-実行には？というところ次回。
