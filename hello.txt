@@ -1,0 +1,54 @@
+これはテキストファイルになっているが、hello.plの勉強メモ。
+
+use strict;
+# 厳しいプログラムのチェック
+use warnings;
+# 詳しい警告を出力
+
+print "hello!\n";
+# \\wsl.localhost\Ubuntu\home\kapa\hello.pl
+
+my $price = 2000;
+print $price;
+# これだけでは改行をしない。見づらい。追記だが、次の行を入れることで解決。
+print "\n";
+# 本では print "￥n"; となっている。\が￥になるときもあるから……。
+print $price, "\n";
+# これは改行を入れている。","は表示されないことを確認。
+print "$price\n";
+# 変数＋改行　をダブルクォーテーションで囲ってもよいようだ。
+
+=pod
+【my】変数を初めて定義するときに使用
+これを消して実行した場合、以下のようなエラーが表示された。
+Global symbol "$price" requires explicit package name (did you forget to declare "my $price"?) at hello.pl line 9.
+Global symbol "$price" requires explicit package name (did you forget to declare "my $price"?) at hello.pl line 10.
+Global symbol "$price" requires explicit package name (did you forget to declare "my $price"?) at hello.pl line 12.
+Global symbol "$price" requires explicit package name (did you forget to declare "my $price"?) at hello.pl line 14.
+Execution of hello.pl aborted due to compilation errors.
+
+グローバルシンボル（グローバル変数）には、明示的なパッケージ名が必要です。
+（my $priceじゃない？）とまで教えてくれた。
+コンパイルエラーにより、hello.plの実行が中断されました。
+
+複数行コメントアウトするために＝podと=cutで囲んだ。（PODという記法）
+ドキュメントですよ、と示すもの。一時的。リリースするもの、には推奨しないようだ。
+=cut
+
+print $price * 0.8, "\n";
+$price = 10000, "\n";
+print $price, "\n";
+
+# 変数はそのまま計算に使える。
+# 変更はしれっとできる。既に$priceという変数名は使用済みなのでmyは不要。
+# 確認のため、$priceがいくつか表示してみる。こういうのを「デバッグプリント」という。
+
+my $discount_price = $price * 0.9;
+print $discount_price;
+print "\n";
+
+# ときに、変数自体を表示しつつ、それがいくつだよとデバッグプリントのようにしたい。
+print "値段は $price 円です。\n";
+print "\$price is $price\n";
+# 変数展開をするには、変数を示す$の前に\（￥）を添えるだけ。
+
