@@ -1,0 +1,50 @@
+use strict;
+use warnings;
+
+my $add = 12 + 3;
+my $sub = 12 - 3;
+my $mul = 12 * 3;
+my $div = 12 / 3;
+print "\$add = $add\n";
+print "\$sub = $sub\n";
+print "\$mul = $mul\n";
+print "\$div = $div\n";
+
+=pod
+add = addition = 足し算
+sub = subtraction = 引き算
+mul = multiplication = 掛け算
+div = division = 割り算
+=cut
+
+# my $int = 365 / 7; 定義しなくてもいいか。
+print int(365 / 7), "\n";
+# int = integer = 整数（割り算切り捨て）
+# 四捨五入したい場合は、切り捨てになる前に 0.5 足しておけばよい。
+my $x = 1234.6;
+print int($x + 0.5), "\n";
+# 剰余の計算print 365 % 7, "\n";
+my $day = 14;
+print $day / 7, "\n";
+# 現在が日曜日だとすると、14日後は何曜日？
+（0なら日曜日）という計算ができる。
+# print 123 / 0;
+# Illegal division by zero at var1.pl line 33.
+# ゼロによる不正な割り算　※0で割ることはできない。
+# 累乗について！
+print 3 ** 2, "\n";
+print -3 ** 2, "\n";
+# -3 ** 2 の結果は (-3)^2 = 9ではなく、-(3)^2 = -9 となる。え。
+# もし-3を二乗したい場合、カッコを使って明示的に負の数を示す必要がある。
+# print (-3) ** 2, "\n";  これはエラー出る。
+print ((-3) ** 2);print "\n";
+# ここまで囲ってようやくエラー無く結果表示。**の方が優先される関係のため？
+my $y = 123;$y++;
+print $y, "\n";
+# $y に １増加させる 指示。１減少させるのは $y--; と -- をつければよい。
+my $name = "Programming Lesson";
+print "\$name is $name\n";
+# $name is Programming Lessonと出力される。引用符""は消える。# ""を表示したいなら、それを文字列として表示する記号として　\"(￥")　と入力。
+my $name2 = "\"Programming Lesson\"";
+print "\$name2 is $name2\n";
+# $name2 is "Programming Lesson" と引用符""が付いた状態で表示できた。なるほど。
