@@ -48,3 +48,42 @@ print "\$name is $name\n";
 my $name2 = "\"Programming Lesson\"";
 print "\$name2 is $name2\n";
 # $name2 is "Programming Lesson" と引用符""が付いた状態で表示できた。なるほど。
+
+別のファイルでもよかったか）
+use strict;
+use warnings;
+
+my $value = 255;
+my $str = sprintf('%X', $value);
+print $str, "\n";
+
+# 関数sprintfを使うと、様々な書式で数を文字列に変換できる。
+# '%X' は16進数として表示するための指示
+
+# foreach my $value (0..255) {
+#     my $str = sprintf('%X', $value);
+#     print $value, ' -> ', $str, "\n";
+# }
+# 0~255までの10進数を16進数に直す。
+
+# 逆に16進数でかかれた文字列を数に直すのは、関数hex
+print hex('FF'), "\n";
+
+# 8進数でかかれた文字列を数に直すには、関数oct
+print oct('177'), "\n";
+
+# 文字列関数substr : 文字列の一部分を切り出すときに使う。
+my $s = substr ('Programming Lesson', 0, 7);
+print $s, "\n";
+# Program　が抜き出される。0は切り出す部分文字列の開始位置。7は切り出す文字列の長さ。
+# 切り出す長さを指定しなければ、開始位置以降の残り全部が対象となる。
+
+# 文字列の置き換えもできる。
+my $str2 = 'Programming Lesson is fun!';
+my $s2 = substr($str2, 12, 6, 'Perl');
+print "\$str2 = $str2\n";
+print "\$s2 = $s2\n";
+# $str2 = Programming Perl is fun!
+# $s2 = Lesson
+# 13文字目から6文字つまりLessonを切り取った。切り取った部分を第四引数「Perl」で置き換える。
+# 置き換えられた状態の文字列が完成。＋置き換えられた部分「Lesson」が$s2に返される！
