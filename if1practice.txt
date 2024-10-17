@@ -46,3 +46,92 @@ if (not $hour == 12) {
 }
 # 否定演算子notの方が!よりも優先順位は低い。
 
+# if修飾子（条件式よりも、実行される処理に重点を置いて表現したい時に。）
+print 'おはようございます。' if ($hour < 8);
+$hour = "0$hour" if ($hour < 10);
+$min = "0$min" if ($min < 10);
+$sec = "0$sec" if ($sec <10);
+# 変数を置き換える処理をします！．．．ところで書き換えるのは1桁のときだけよ。と表現。# open(FILE, $filename) or die "$!"; ファイルオープンの際の慣用句。# die if (!open(FILE, $filename)); エラー時に終了！さてファイルをオープンして～。不適切。
+# practiceprint "（練習）飲み物を選んでください。\n";
+print "1 = コーヒー\n";
+print "2 = オレンジジュース\n";
+print "3 = ウーロン茶\n";
+my $line = <STDIN>;
+if ($line == 1) {
+    print "コーヒー\n";
+} elsif ($line == 2) {
+    print "オレンジジュース\n";
+} elsif ($line == 3) {
+    print "ウーロン茶\n";
+} else {
+    print "ありません。\n";
+}
+# <STDIN>に入るもの：ユーザーが入力した1行の文字列。
+「スタンダードイン」「標準入力」
+if ($line != 1 and $line != 2 and $line != 3) {
+    print '1, 2, 3のいずれかを入力してください。', "\n";
+}
+# if (not ($line == 1 and $line == 2 and $line == 3))　も同じ
+# unless ($line == 1 and $line == 2 and $line == 3)　も同じ
+# 「論理反転ミス」、「境界のミス」に注意！
+print "暗唱番号を入力してください。\n";
+my $line2 = <STDIN>;
+chomp($line2);
+if ($line2 eq "0314") {
+    print "金庫が開きました。\n";
+} else {
+    print "暗証番号が違います。\n";
+}
+# chomp(変数)：「チョンプ」。「変数$line2の最後の改行を取り除く」もの。
+# <STDIN>を使って入力した一行の最後には改行が付加される。文字列の比較を行う前に取り除く。# 正しい番号かどうか？
+　eq　「イーキュー」。両辺を文字列として比較し、等しかったら真。
+# $x eq $y : equal to
+# $x ne $y : not equal to
+# $x lt $y : less than
+# $x gt $y : greater than
+# $x le $y : less than or equal to
+# $x ge $y : greater than or equal to
+# $x cmp $y : compare ( <=> ) ※$xと$y が等しいなら0、
+$xが$yより小さいなら-1、~より大きいなら1
+my $x = 12;
+my $y = 9;
+if ($x > $y) {
+    print "$x > $y\n";
+} else {
+    print "$x <= $y\n";
+}
+if ($x gt $y) { 
+    print "$x gt $y\n";
+} else {
+    print "$x le $y\n";
+}
+# 12 > 9
+# 12 le 9
+# デバッグプリント
+my $debug = 1;
+# 0にするとオフ
+#...if ($debug) {
+    print "\$x = $x\n";
+    print "\$y = $y\n";
+}
+# こうしておけば、プログラムの最初で変数$debugの値を0にするだけで、
+# デバッグプリントを無効にすることができる。
+# 　print "\$x = $x\n\$y = $y\n" if ($debug); でも可。
+=pod
+数が入力されたかどうかを判断（文字列ではなく数か）
+$line3 =~ /^\d+$/
+$line3 : 内容を調査したい変数
+=~ : パターン結合演算子。これは、右辺の正規表現が左辺にマッチするかどうかを調べる。
+/ / : 正規表現の範囲を示す区切り文字開始と終わり
+^ : 文字列のはじめにマッチする
+\d : 数字1文字
++ : …の一個以上の連続を表す
+$ : 文字列の終わりにマッチする
+=cut
+my $line3 = <STDIN>;
+chomp($line3);
+if ($line3 =~ /^\d+$/) {
+    print "「$line3」は数字列です。\n"
+} else {
+    print "「$line3」は数字列ではありません。\n"}
+# [「34」は数字列です。]となる。
