@@ -52,7 +52,9 @@ $hour = "0$hour" if ($hour < 10);
 $min = "0$min" if ($min < 10);
 $sec = "0$sec" if ($sec <10);
 # 変数を置き換える処理をします！．．．ところで書き換えるのは1桁のときだけよ。と表現。# open(FILE, $filename) or die "$!"; ファイルオープンの際の慣用句。# die if (!open(FILE, $filename)); エラー時に終了！さてファイルをオープンして～。不適切。
-# practiceprint "（練習）飲み物を選んでください。\n";
+
+# practice
+print "（練習）飲み物を選んでください。\n";
 print "1 = コーヒー\n";
 print "2 = オレンジジュース\n";
 print "3 = ウーロン茶\n";
@@ -74,6 +76,7 @@ if ($line != 1 and $line != 2 and $line != 3) {
 # if (not ($line == 1 and $line == 2 and $line == 3))　も同じ
 # unless ($line == 1 and $line == 2 and $line == 3)　も同じ
 # 「論理反転ミス」、「境界のミス」に注意！
+
 print "暗唱番号を入力してください。\n";
 my $line2 = <STDIN>;
 chomp($line2);
@@ -83,8 +86,10 @@ if ($line2 eq "0314") {
     print "暗証番号が違います。\n";
 }
 # chomp(変数)：「チョンプ」。「変数$line2の最後の改行を取り除く」もの。
-# <STDIN>を使って入力した一行の最後には改行が付加される。文字列の比較を行う前に取り除く。# 正しい番号かどうか？
-　eq　「イーキュー」。両辺を文字列として比較し、等しかったら真。
+# <STDIN>を使って入力した一行の最後には改行が付加される。文字列の比較を行う前に取り除く。
+# 正しい番号かどうか？　eq　「イーキュー」。両辺を文字列として比較し、等しかったら真。
+# eq でなく　==を用いると、314(0無し)でも金庫が開きましたの方になる。
+
 # $x eq $y : equal to
 # $x ne $y : not equal to
 # $x lt $y : less than
@@ -93,30 +98,37 @@ if ($line2 eq "0314") {
 # $x ge $y : greater than or equal to
 # $x cmp $y : compare ( <=> ) ※$xと$y が等しいなら0、
 $xが$yより小さいなら-1、~より大きいなら1
+
 my $x = 12;
 my $y = 9;
+
 if ($x > $y) {
     print "$x > $y\n";
 } else {
     print "$x <= $y\n";
 }
+
 if ($x gt $y) { 
     print "$x gt $y\n";
 } else {
     print "$x le $y\n";
 }
+
 # 12 > 9
 # 12 le 9
+
 # デバッグプリント
 my $debug = 1;
 # 0にするとオフ
-#...if ($debug) {
+#...
+if ($debug) {
     print "\$x = $x\n";
     print "\$y = $y\n";
 }
 # こうしておけば、プログラムの最初で変数$debugの値を0にするだけで、
 # デバッグプリントを無効にすることができる。
 # 　print "\$x = $x\n\$y = $y\n" if ($debug); でも可。
+
 =pod
 数が入力されたかどうかを判断（文字列ではなく数か）
 $line3 =~ /^\d+$/
@@ -128,6 +140,8 @@ $line3 : 内容を調査したい変数
 + : …の一個以上の連続を表す
 $ : 文字列の終わりにマッチする
 =cut
+
+print "文字or数を入力してください。（判定）\n";
 my $line3 = <STDIN>;
 chomp($line3);
 if ($line3 =~ /^\d+$/) {

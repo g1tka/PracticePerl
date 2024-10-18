@@ -1,0 +1,69 @@
+use strict;
+use warnings;
+
+my @score = (64, 90, 75);
+# 配列。＠。@配列名。中身は「要素」。要素を取り出すには・・・
+# print $score[0];
+# ひとつ取り出すのはスカラー変数。$で指定。０～
+# print $score[0] + $score[1] + $score[2], "\n";
+my $sum = 0;
+foreach my $item (@score) {
+    $sum = $sum + $item;
+}
+print $sum, "\n";
+# はじめに＝０と定義しているが、これは初期化している。
+# foreach　繰り返しの構文を作るためのもの。
+# 配列の要素を1個1個取り出して　→　$itemにセット。
+# $sum（これまでの合計）＋ $item を左辺の $sum へ代入する。
+# $sum += $item;でもよい。これは、$sum に $item を足し込んでいる。と。
+# 変数省略がよく行われるとのこと。$item の部分を書かない。
+# $_ が自動的に代わりとなる。何か要素を用いたいときはこれを記述することでアクセスできる。
+foreach (@score) {
+    $sum += $_;
+}
+# 配列に要素を追加したい場合
+$score[3] = 100;
+# print @score, "\n";
+# デバッグプリント。649075100と表示された。いちおう、追加されたことを確認できた。
+# 文字列も代入できる。qw()便利表記法を使うと、スペースを区切りとして、単語をリストの要素にする。
+# my @week = qw(Sun Mon Tue Wed Thu Fri Sat);
+my @week = ('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
+foreach my $day (@week) {
+    print "$day ";
+}
+print "\n";
+# デバッグプリントのための記述が一手間。連続して表示されてしまうのを防いだ。
+# ""（二重引用符）中で展開すると！要素がスペースで区切られたものになる！！！！
+
+print "@score\n";
+print "@week\n";
+print "国語は $score[0] 点です。\n";
+# 簡単だ・・・
+
+# @を含む文字列の出力（配列じゃない）（test\@mail.comなど）
+print "test\@mail.com\n";
+
+# 配列の要素数を調べるには、arrayをscalarに代入する。
+my @array = (
+    31,
+    41,
+    59,
+    26,
+);
+my $length = @array;
+print $length, "\n";
+# 4
+# 関数scalarを使ってもいい。強制的にスカラーコンテキストで評価することができる。
+print scalar(@array), "\n";
+# 以下は配列の大きさによって処理が変わるif文の例。
+if (@array) {
+    # 配列が空でない場合。@array > 0 と同じ。
+} else {    # 配列が空の場合
+}
+
+# 配列の最後の要素を得たいとき。
+my $last = $array[-1];
+#        = $array[$#array];
+print $last, "\n";
+# 要素が４つの配列に対して、要素の添字は0,1,2,3。
+# 最後の要素の添字 $#array == @array - 1; である。（真）
