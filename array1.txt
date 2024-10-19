@@ -5,12 +5,15 @@ my @score = (64, 90, 75);
 # 配列。＠。@配列名。中身は「要素」。要素を取り出すには・・・
 # print $score[0];
 # ひとつ取り出すのはスカラー変数。$で指定。０～
+
 # print $score[0] + $score[1] + $score[2], "\n";
+
 my $sum = 0;
 foreach my $item (@score) {
     $sum = $sum + $item;
 }
 print $sum, "\n";
+
 # はじめに＝０と定義しているが、これは初期化している。
 # foreach　繰り返しの構文を作るためのもの。
 # 配列の要素を1個1個取り出して　→　$itemにセット。
@@ -21,10 +24,12 @@ print $sum, "\n";
 foreach (@score) {
     $sum += $_;
 }
+
 # 配列に要素を追加したい場合
 $score[3] = 100;
 # print @score, "\n";
 # デバッグプリント。649075100と表示された。いちおう、追加されたことを確認できた。
+
 # 文字列も代入できる。qw()便利表記法を使うと、スペースを区切りとして、単語をリストの要素にする。
 # my @week = qw(Sun Mon Tue Wed Thu Fri Sat);
 my @week = ('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
@@ -67,3 +72,64 @@ my $last = $array[-1];
 print $last, "\n";
 # 要素が４つの配列に対して、要素の添字は0,1,2,3。
 # 最後の要素の添字 $#array == @array - 1; である。（真）
+
+=pod
+要素の交換　（$xと$yを交換したい）
+$tmp = $x;
+$x = $y;
+$y = $tmp;
+もしくは以下
+($x, $y) = ($y, $x);
+($x, $y, $z) = ($y, $z, $x);
+=cut
+
+=pod
+要素の合体　（@user1という配列と@user2という配列をすべて前から順に合わせる）
+my @users = (@user1, @user2);
+@user1, @user2を書き換えても、合体した後であれば@usersが自動的に書き換わることはない。
+print "@users\n";
+=cut
+
+# my @score = (64, 90, 75, 100);
+# Perlの組み込み関数joinを使うと、配列の要素を連結して1つの文字列にすることができる。
+print join(',', @score), "\n";
+# 64, 90, 75
+# join(区切り文字列(今回は","), 配列やリスト(期待))　という形式。
+print '点数は' . join('点と、', (60, 90, 70)) . '点です。', "\n";
+# 60, 90, 70　区切り文字は要素の合間に入り、最後の要素の後ろにはつかない。
+
+# Perlの組み込み関数splitを使うと、文字列を分けられる。
+my @score1 = split(/,/, '64,90,75');
+print "@score1\n";
+# split(/パターン/, 文字列)　という形式。第二引数のところ、文字列、なので数も文字列！！！
+# 64 90 75　と出力される。　","を消した。
+# //で囲うことで（正規表現）区切り文字列のパターンを表現。
+my $line = 'Hello, world!';
+my @array2 = split(//, $line);
+print join(':', @array2), "\n";
+# H:e:l:l:o:,: :w:o:r:l:d:! となる！
+print join(':', @score), "\n";
+# 64:90:75:100 となる！（それぞれが文字列）
+=pod
+
+なるほど利用例：アクセスカウンターの一部
+$counter ：アクセスカウンタの数値が入っている（とする）
+my $counter = 123;
+my @counter = split(//, $counter);
+foreach my $file (@counter) {
+    print "<img src=\"$file.gif\">";
+}
+出力：<img src="1.gif"><img src="2.gif"><img src="3.gif">
+もしくは・・・
+my $counter = 123;foreach (split(//, $counter)) {
+    print qq|<img src="$_.gif">|;
+}
+出力：<img src="1.gif"><img src="2.gif"><img src="3.gif">
+=cut
+
+# my @data = split(/ /, '  green  red    yellow  ');
+# print "@data\n";
+# print join(' ', @data),"\n";
+# my @data = split(/\s+/, '  green  red    yellow  ');
+# \sはスペースやタブなどの空白全般を意味する。メタ文字＋は一個以上の繰り返し。
+
