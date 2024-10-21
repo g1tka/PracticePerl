@@ -228,3 +228,99 @@ print "\@removed4 = @removed4\n";
 # さらにOFFSETも省略すると、開始位置指定なし＝配列の最初の要素から
 # 最後まで、挿入するものナシ　→　すべて、削除、となる。
 
+# my @week = ('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
+my @sorted = sort(@week);
+print join(', ', @sorted), "\n";
+# Fri, Mon, Sat, Sun, Thu, Tue, Wed
+# 関数ソートを使うと、文字コードが小さい順にソートする。
+# 逆順にしたい場合は、sort後に関数reverseを使う。
+my @reversed = reverse(sort(@week));
+print join(', ', @reversed), "\n";
+# Wed, Tue, Thu, Sun, Sat, Mon, Fri
+
+print "@score\n";
+# my @score = (64, 90, 75, 100);
+my @sorted2 = sort(@score);
+print join(', ', @sorted2), "\n";
+print "なお、\@score = @score のまま。\n";
+# 100, 64, 75, 90 ※先頭の数字が小さい順になっている。
+# 関数sort は、「文字列の文字コード順」に並べ替える点に注意！！
+my @sorted3 = sort { $a <=> $b } @score;
+#             sort {BLOCK} LIST
+print join(', ', @sorted3), "\n";
+# 64, 75, 90, 100 ※理想通り！
+
+# <=>
+# $a < $b なら -1
+# $a = $b なら 0
+# $a < $b なら 1
+# という値になる演算子。
+
+# Perlの配列は一次元配列（よ、こ、な、ら、び）
+# 二次元配列を作りたければリファレンスという機構を勉強する必要あり。perlrestut。
+
+=pod
+$scalar がスカラー、@array が配列全体、$array[$i] が配列の要素（スカラー）。
+「配列のスライス」
+my @array = ('a', 'b', 'c', 'd', 'e');
+print join(':', ($array[0], $array[2], $array[4]));
+→ a:c:e
+@array[0, 2, 4]　と同じ！
+これは配列のスライス。配列の0,2,4番目の要素からなる部分的な配列。
+
+@array[10,11,12,13,14,15,16,17,18,19,20]
+これと同じ
+@array[10..20]".."
+という演算子（範囲演算子）は左辺の値から、右辺の値まで１ずつ増加するリストを作る。
+
+@array[0, 1] = @array[1, 0];
+これは配列の最初の2つの要素を交換する例。
+
+@array[0, $#array] = @array[$#array, 0];
+配列の最初と最後の要素を交換する例。
+
+@array[0, 1, 2] = @array[1, 2, 0];
+配列のスライスを使って配列の内容をローテーションする例。※$array[0]・・と同じ
+$array[0]は、配列@arrayの最初の要素を表すスカラー変数。
+@array[0]は、配列の最初の要素のみからなる配列のスライス。
+配列とリストについて学んだ！
+=cut
+
+my $time = '01:23:45';
+# my ($hour, $min, $sec) = $time;
+my ($hour, $min, $sec) = split(/:/, $time);
+print "$hour時$min分$sec秒です。\n"
+=pod
+
+# if (0 <= $index and $index <= $#array) {
+if (0 <= $index and $index < @array) {
+    print $array[$index], "\n";
+}
+
+spliceを使ってpush/pop/shift/unshiftを書く！
+# splice(ARRAY, OFFSET, LENGTH, LIST) 
+# splice(対象配列の, ここから, これだけの長さを削除し, そこにこのリストを挿入する)
+
+1. push(@array, $item);
+※ @arrayの最後に$itemをpush
+splice(@array, @array, 0, $item);
+
+2. $item = pop(@array)
+※ @arrayの後ろからひとつpopして$itemに代入 
+×　splice(@array, @array, 1, $item);
+$item = splice(@array, $#array(もしくは-1));
+
+3. $item = shift(@array);
+※ @arrayの先頭から一つshiftして$itemに代入 
+×　splice(@array, 0, 1);
+$item = splice(@array, 0, 1);
+
+4. unshift(@array, $item);
+※ @arrayの先頭に１つ$itemをunshift
+splice(@array, 0, 0, $item);
+
+5. $array[$index] = $item;
+※ @arrayの$index番目の要素に$itemという値を代入（置換？）
+splice(@array, $index, 1, $item);
+=cut
+
