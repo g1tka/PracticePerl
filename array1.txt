@@ -289,9 +289,9 @@ $array[0]は、配列@arrayの最初の要素を表すスカラー変数。
 my $time = '01:23:45';
 # my ($hour, $min, $sec) = $time;
 my ($hour, $min, $sec) = split(/:/, $time);
-print "$hour時$min分$sec秒です。\n"
-=pod
+print "$hour時$min分$sec秒です。\n";
 
+=pod
 # if (0 <= $index and $index <= $#array) {
 if (0 <= $index and $index < @array) {
     print $array[$index], "\n";
@@ -323,4 +323,44 @@ splice(@array, 0, 0, $item);
 ※ @arrayの$index番目の要素に$itemという値を代入（置換？）
 splice(@array, $index, 1, $item);
 =cut
+
+# my @kandigit = qw(〇 一 二 三 四 五 六 七 八 九);
+# これで$kandigit[5] = 五、#kandigit[0] = 〇となる。
+if ($num == 0) {
+    $knum = '〇';
+} elsif ($num == 1) {
+    $knum = '一';
+} elsif ($num == 2) {
+    $knum = '二';
+} elsif ($num == 3) {
+    $knum = '三';
+} elsif ($num == 4) {
+    $knum = '四';
+} elsif ($num == 5) {
+    $knum = '五';
+} elsif ($num == 6) {
+    $knum = '六';
+} elsif ($num == 7) {
+    $knum = '七';
+} elsif ($num == 8) {
+    $knum = '八';
+} elsif ($num == 9) {
+    $knum = '九';
+} else {
+    $knum = undef;
+}
+
+# my @reversed = sort { $b <=> $a } @array;
+# my @reversed = reverse sort { $a <=> $b } @array;
+
+# my $data = "$myname,$mymsg,$mytime";
+# join(区切り文字列, 配列やリスト)で連結する。
+my $data = join(',', $myname, $mymsg, $mytime);
+# split(/パターン/, 文字列)で区切る。
+my ($myname, $mymsg, $mytime) = split(/,/, $data);
+# $myname,$mymsg,$mytime（の中身）が区切り文字となるコンマを含んではならない。
+# もしコンマを含んでいた場合、splitした結果は正しくもとに戻らなくなる。
+# コンマを&encode、&decode等置換する手配をすることで防げる。らしい。
+# ★データを連結したり分割したりする場合には、データ中に含まれる文字の範囲に注意をはらい、
+# 　　区切り文字と干渉しないように気を付ける必要がある。
 
