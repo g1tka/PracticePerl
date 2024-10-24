@@ -1,5 +1,8 @@
 use strict;
 use warnings;
+use utf8;
+use open ':std', ':utf8';
+# portableshell.batのターミナルで「chcp 65001」の実行も。
 
 print "hello!\n";
 # "C:\perlpractice\hello.pl"
@@ -11,7 +14,7 @@ print $price, "\n";
 print "$price\n";
 
 print $price * 0.8, "\n";
-$price = 10000, "\n";
+$price = 10000;
 print $price, "\n";
 
 # 変数はそのまま計算に使える。
@@ -25,4 +28,3 @@ print "値段は $price 円です。\n";
 print "\$price is $price\n";
 # 変数展開をするには、変数を示す$の前に\（￥）を添えるだけ。
 
-# 別のPCでできるように設定中。
