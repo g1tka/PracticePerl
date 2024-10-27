@@ -171,3 +171,24 @@ keys(%uniq) を使って、ハッシュ %uniq に格納されている全ての�
 
 ハッシュの実例１終わり。
 =cut
+
+# ハッシュの実例２
+my %counter;
+my @name = ('Yuki', 'Tomura', 'Sato', 'Sato', 'yuki', 'Mamoru', 'Tomura', 'Tomura');
+foreach my $name (@name) {
+    $counter{$name}++;
+}
+foreach my $name (sort keys %counter) {
+    print "$name $counter{$name}\n";
+}
+# Mamoru 1
+# Sato 2
+# Tomura 3
+# Yuki 1
+# yuki 1
+=pod
+最初のforeach：配列@nameの中に現れる要素の数を%counterを使って数えている。
+$counter{$name} = $counter{$name} +1; と同じ。変数を1増加させる記述。
+2回目のforeach：数えた結果を名前順にソートして表示している。
+結果：ハッシュのキーは大文字小文字区別する点に注意。
+=cut
