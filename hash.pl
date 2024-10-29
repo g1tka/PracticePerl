@@ -192,3 +192,37 @@ $counter{$name} = $counter{$name} +1; と同じ。変数を1増加させる記�
 2回目のforeach：数えた結果を名前順にソートして表示している。
 結果：ハッシュのキーは大文字小文字区別する点に注意。
 =cut
+
+# ハッシュの実例３
+my %name_to_age = ('Yuki' => 36, 'Sato' => 22, 'Tom' => 21, );
+my %age_to_name;
+foreach my $name (keys %name_to_age) {
+    $age_to_name{$name_to_age{$name}} = $name;
+}
+foreach my $age (keys %age_to_name) {
+    print "$age → $age_to_name{$age}\n";
+}
+# 22 → Sato
+# 36 → Yuki
+# 21 → Tom
+=pod
+ハッシュのキーには重複がない。値にも重複が無いならば入れ替え可能。
+$age_to_name{$name_to_age{$name}} = $name;
+
+keys %hash は全てのキーからなるリスト、を作る。
+foreach my $name (keys %name_to_age) {の部分は、
+%name_to_ageというハッシュのすべてのキーからなるリスト。
+この要素を一つずつ$nameに代入。つまり、キー一覧になった！
+
+%hashというハッシュの｛キー｝から値を得るには、$hash{キー}　= 値だった。
+各名前についてループを回し、$name_to_age{$name}を使ってその年齢を取得。
+
+$name_to_age{値}　＝$name　とした！（これで逆になったわけだ）
+
+いちおう本における解説は以下
+                        　$name　　　　　　　：名前
+            {$name_to_age{$name}}         　 :に対応した年齢
+$age_to_name{$name_to_age{$name}}            :をキーとしたハッシュの値として
+$age_to_name{$name_to_age{$name}} = $name;   :名前を代入する。
+以上解説。
+=cut
